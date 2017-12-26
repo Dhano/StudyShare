@@ -2,7 +2,6 @@
 
 package ui.pages;
 
-import com.sun.xml.internal.ws.policy.privateutil.PolicyUtils;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -40,16 +39,16 @@ public class Share implements BasicController{
     StackPane parent;
 
     AnchorPane startSharingRoot;
-    StartSharing ssC=null;
+
     //this method is used to initialize all the necessary components before the fxml is displayed
     public void initialize()
     {
         //linking the startSharingController with ShareController
-
+        StartSharing ssC=null;
         try{
             loader.load();
             ssC=loader.getController();
-
+            System.out.println("After loading");
             startSharingRoot=(AnchorPane)loader.getRoot();
             ssC.setMyRoot(startSharingRoot);
             ssC.setMyStackPane(parent);
@@ -62,36 +61,39 @@ public class Share implements BasicController{
 
     //method which will create Groups(button) which is accepting arraylist
     //will be displaying buttons in column of 3
-    public void getData() throws Exception {
+    public void showGroups() throws Exception {
         //ArrayList will be initialized by database
-//        /Random random = new Random();
-        ArrayList allGroups= DatabaseHelper.readBatchName();
-        Button[] btn = new Button[allGroups.size()];
-        for(int i=0;i<allGroups.size();i++){
-                    btn[i] = new Button();
+//        /Random random = new Random()
+        //random.nextInt(9)+9;
+        ArrayList arr = DatabaseHelper.readBatchName();
+        int arraySize= arr.size();
+        Button[] btn = new Button[arraySize];
+        int k=0;
+            for (int i = 0; i < 3; i++) {
+                for (int j = 0; j < 3&&k<arraySize; j++) {
+                    btn[k] = new Button((String) arr.get(k));
+
                     //event handler functions which loads the the panel of users list when the groups(button) are clicked
-                    btn[i].setOnAction(new EventHandler<ActionEvent>() {
+                    btn[k].setOnAction(new EventHandler<ActionEvent>() {
                         public void handle(ActionEvent event) {
-                            Button b=(Button) event.getSource();
-                            Server s=new Server(b.getText());
-                            ssC.setAll(b.getText(),s);
-                            parent.getChildren().add(startSharingRoot);
+                            Server server=new Server(((Button)event.getSource()).getText());
+                            parent.getChildren().add(
+                                    startSharingRoot);
                         }
                     });
                     //populating the grid layout which displays the group names
-                    btn[i].getStyleClass().add("all_btnBlueBackground");
-                    btn[i].setId("share_btnGroup");
-                    btn[i].setPadding(new Insets(5));
-                    btn[i].setPrefHeight(150);
-                    btn[i].setPrefWidth(250);
-                    btn[i].setText(allGroups.get(i).toString()+ "");
-                    btn[i].setAlignment(Pos.CENTER);
-                    Grid.add(btn[i],i,i);
+                    btn[k].getStyleClass().add("all_btnBlueBackground");
+                    btn[k].setId("share_btnGroup");
+                    btn[k].setPadding(new Insets(5));
+                    btn[k].setPrefHeight(200);
+                    btn[k].setPrefWidth(250);
+                    btn[k].setAlignment(Pos.CENTER);
+                    Grid.add(btn[k], j, i);
+                    k++;
                 }
             }
-        //Grid.setPadding(new Insets(10, 10, 10, 10)); //margins around the whole grid//
-
-    //    ********** getters for this file **********
+        }
+        //Grid.setPadding(new Insets(10, 10, 10, 10)); //margins around the whole grid////    ********** getters for this file **********
     public Button getBtn_share() {
         return btn_share;
     }
@@ -123,7 +125,7 @@ public class Share implements BasicController{
 
     public Node getRoot(){
         try {
-            getData();
+            showGroups();
 
         }
         catch (Exception e){}

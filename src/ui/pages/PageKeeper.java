@@ -5,11 +5,13 @@
 
 package ui.pages;
 
+import javafx.event.EventHandler;
 import  javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Pagination;
+import javafx.scene.input.KeyEvent;
 import javafx.util.Callback;
 import ui.pages.constants.PageConstants;
 
@@ -28,6 +30,12 @@ public class PageKeeper implements PageConstants{
 
     /*this method will initialize other fxml files cotrollers and add them to pageManager*/
     @FXML protected void initialize() {
+        pageManager.setOnKeyPressed(new EventHandler<KeyEvent>() {
+            @Override
+            public void handle(KeyEvent event) {
+                event.consume();
+            }
+        });
         System.out.println("Start of PageKeeper");
         try {
         /*initilize all the pages*/
@@ -75,8 +83,8 @@ public class PageKeeper implements PageConstants{
     private Node pageSelector(int pageIndex) {
 
         if(pageIndex==PageConstants.LOGIN_PAGE) {
-           return loginPage.getRoot();
-            //return dashboard.getRoot();
+           //return loginPage.getRoot();
+           return dashboard.getRoot();
         }
         else if (pageIndex==PageConstants.DASHBOARD_PAGE){
             return dashboard.getRoot();

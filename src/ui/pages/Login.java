@@ -27,6 +27,8 @@ import ui.core.services.microservices.utilities.Housekeeper;
 import ui.pages.constants.BasicController;
 import ui.pages.constants.PageConstants;
 
+import java.util.ArrayList;
+
 public class Login implements PageConstants,BasicController{
 
     /*Objects fo local fxml*/
@@ -168,6 +170,17 @@ public class Login implements PageConstants,BasicController{
     @FXML protected void validateLogin(ActionEvent ae)
     {
         try {
+
+         //   ArrayList arrayList=DatabaseHelper.readUsersName("java");
+       //     for(int i=0;i<arrayList.size();i++)
+     //       System.out.println((String) arrayList.get(i));
+
+//            DatabaseHelper.addBatchUser("java","Dhananjay");
+            System.out.println("Value after hash:::::::::::"+Housekeeper.getMd5("java"+"Dhananjay"));
+
+
+
+
             if (DatabaseHelper.verifyUser(this.username.getText(), Housekeeper.getMd5(this.password.getText()))==1) {
             /*Login sucessful*/
                 System.out.println("Value of pagekeeper"+pageKeeper);
@@ -179,6 +192,7 @@ public class Login implements PageConstants,BasicController{
             /*Plz write the code to show error message @Vishal*/
         }catch(Exception e){
             System.out.println("inside call of button click of login button");
+            e.printStackTrace();
         }
 
     }

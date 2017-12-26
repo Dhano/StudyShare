@@ -203,7 +203,8 @@ public class DatabaseHelper
         /*
             it is use to provide to enroll name for that batchName,you just need to provide batchName
         */
-        String query="SELECT userName from BATCHUSERS WHERE batchName=\'"+batchName+"\';";
+        String query="SELECT id from BATCHUSERS ;";
+        //String query="SELECT userName from BATCHUSERS WHERE batchName=\'"+batchName+"\';";
         return DatabaseHelper.dh.readValues(query);
     }
 
@@ -214,7 +215,7 @@ public class DatabaseHelper
         */
         try
         {
-            String query = "SELECT count(*) FROM USERS WHERE emailId='" + emailId + "' AND password=" + password + ";";
+            String query = "SELECT count(*) FROM USERS WHERE emailId='" + emailId + "' AND password="+password+";";
             System.out.println(query);
             ArrayList verify= DatabaseHelper.dh.readValues(query);
             System.out.println(verify.toString());
@@ -229,6 +230,26 @@ public class DatabaseHelper
             Logger.wtf(e.getStackTrace().toString());
             return 0;
         }
+    }
+
+    public static ArrayList getPassword(String emailId)
+    {
+        /*
+            it is use to verify the user,need to pass emialId and hashed password
+        */
+        try
+        {
+            String query = "SELECT password FROM USERS"+";";
+            System.out.println(query);
+            ArrayList verify= DatabaseHelper.dh.readValues(query);
+            return verify;
+        }
+        catch (Exception e)
+        {
+            System.out.println("I am out ............................");
+            Logger.wtf(e.getStackTrace().toString());
+        }
+        return null;
     }
 
     public static ArrayList<String> getFilePaths(String batchName) {

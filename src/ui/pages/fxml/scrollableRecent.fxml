@@ -1,28 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.FlowPane?>
-<?import javafx.scene.text.Font?>
+
 
 <?import javafx.stage.Screen?>
-<AnchorPane fx:id="ap" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="200" prefWidth="${screen.visualBounds.width}" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.pages.ScrollableRecent" id="ap" stylesheets="@../../css/scrollableRecentStyles.css">
+<StackPane id="share_StackPane"  prefHeight="${screen.visualBounds.height}" prefWidth="${screen.visualBounds.width}" layoutX="0" layoutY="0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.pages.ScrollableRecent" stylesheets="@../../css/shareStyles.css">
+<AnchorPane fx:id="ap" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="200"  id="ap" >
     <fx:define>
         <Screen fx:factory="getPrimary" fx:id="screen"/>
     </fx:define>
-
-
-    <children>
-        <Label layoutX="350" layoutY="0.0" prefHeight="40.0" prefWidth="${screen.visualBounds.width}"  text="Scroll IT" textAlignment="CENTER">
-        </Label>
-
-        <ScrollPane fx:id="sp" layoutX="0" layoutY="50" prefHeight="115.0" prefWidth="820">
+       <children>
+        <ScrollPane fx:id="sp" layoutX="30" layoutY="30" prefHeight="250.0" prefWidth="820">
             <content>
-                <FlowPane fx:id="fp" prefHeight="100.0" prefWidth="820" />
+                <FlowPane fx:id="fp" layoutY="100"  prefHeight="200.0" prefWidth="2030" />
             </content>
         </ScrollPane>
-        <Button fx:id="btnClick" layoutX="0.0" layoutY="0.0" mnemonicParsing="false" onAction="#createRecentsButtons" prefHeight="10.0" prefWidth="10.0" text="Button" />
-    </children>
+       </children>
 </AnchorPane>
+</StackPane>

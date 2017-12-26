@@ -10,6 +10,4 @@
         <Button id="share_btnShare" fx:id="startShare"  styleClass="all_btnBlueBackground" layoutX="430.0" layoutY="30.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="50.0" />
         <Button id="share_btnBack" fx:id="back" styleClass="all_btnBlueBackground" layoutX="320.0" layoutY="30.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="50.0" />
     </children>
-
-
 </AnchorPane>

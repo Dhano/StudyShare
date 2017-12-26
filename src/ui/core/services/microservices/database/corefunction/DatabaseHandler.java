@@ -6,12 +6,11 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.PreparedStatement;
 import java.sql.ResultSetMetaData;
-import ui.core.services.microservices.utilities.logger.Logger;
-import java.util.ArrayList;
-import java.util.Date;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 
+import ui.core.services.microservices.utilities.logger.Logger;
+
+import javax.xml.stream.FactoryConfigurationError;
+import java.util.ArrayList;
 /*
     @author:jaynam
 */
@@ -128,6 +127,7 @@ public class  DatabaseHandler
         {
             Logger.wtf(e.getStackTrace().toString());
             return 0;
+
         }
     }
 

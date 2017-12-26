@@ -17,6 +17,8 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.control.ListView;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import ui.core.services.microservices.database.DatabaseHelper;
+import ui.core.services.microservices.database.corefunction.DatabaseHandler;
 import ui.pages.constants.BasicController;
 
 import java.io.File;
@@ -36,6 +38,7 @@ public class ManageGroup implements BasicController{
     FXMLLoader loader=new FXMLLoader(getClass().getResource("fxml//makeGroup.fxml"));
     ObservableList<String> items = FXCollections.observableArrayList ();
     ObservableList<String> items1 = FXCollections.observableArrayList ();
+    ArrayList tp=new ArrayList();
 
     // Objects refrenced from FXML file for this controller i.e ManageGroups.fxml
     @FXML
@@ -82,6 +85,7 @@ public class ManageGroup implements BasicController{
     //Methods that will initialze all the necessary element for manageGroups.fxml
     @FXML protected  void initialize()
     {
+
         System.out.println("hey hello i am inside dhirens initilize");
         MakeGroup mgController=null;
 
@@ -89,6 +93,8 @@ public class ManageGroup implements BasicController{
             // This will load the makeGroup.fxml file which is used to create groups
             loader.load();
             mgController= loader.getController();
+
+
 
             //method of makeGroupController.java to set the stack pane of the makeGroup.fxml file
             mgController.setStackParent(parent);
@@ -98,6 +104,9 @@ public class ManageGroup implements BasicController{
             delete.setDisable(true);
 
             delete1.setDisable(true);
+            System.out.println("************************ CHECK THIS ***********************");
+            tp= DatabaseHelper.readBatchName();
+            System.out.println(tp.toString());
             items.addAll("HI","HI","HI","HI","HI","HI");
             list.setItems(items);
 
@@ -106,7 +115,7 @@ public class ManageGroup implements BasicController{
 
         }
         catch (Exception e){
-            System.out.println("Hello World");
+            System.out.println("Hello World"+e);
         }
 
         //setting content of scrollpane is to be done here

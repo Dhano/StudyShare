@@ -1,0 +1,20 @@
+1505042723316:	WTF	java.net.SocketException: Connection reset
+1505042834607:	WTF	java.net.SocketException: Connection reset
+1505042944068:	WTF	java.net.SocketException: Connection reset
+1505043824006:	WTF	java.net.SocketException: Connection reset
+1505043831708:	WTF	java.net.SocketException: Connection reset
+1505044006185:	WTF	java.net.SocketException: Connection reset by peer: socket write error
+1505044006186:	WTF	java.net.SocketException: Connection reset
+1505044329714:	WTF	java.net.SocketException: Connection reset
+1505045748365:	WTF	java.net.SocketException: Connection reset
+1505045881065:	WTF	java.net.SocketException: Connection reset
+1505046013634:	WTF	java.net.SocketException: Connection reset
+1505046040436:	WTF	java.net.SocketException: Connection reset
+1505046131541:	WTF	java.net.SocketException: Connection reset
+1505046208707:	WTF	java.net.SocketException: Connection reset
+1505046258112:	WTF	java.net.SocketException: Connection reset
+1505046339549:	WTF	java.lang.NullPointerException
+1505046377024:	WTF	java.lang.NullPointerException
+1505046580822:	WTF	java.net.SocketException: Connection reset
+1505046733467:	WTF	java.net.SocketException: Connection reset
+1505046813896:	WTF	java.net.SocketException: Connection reset

@@ -1,24 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.GridPane?>
-
-<?import javafx.scene.text.Font?>
 
 <!--@author: Ashutosh-->
 <!--anchor pane upon which there is a label and array of buttons-->
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.stage.Screen?>
+<?import javafx.scene.control.ScrollPane?>
 <StackPane id="share_StackPane" fx:id="parent" fx:controller="ui.pages.Share" prefHeight="${screen.visualBounds.height}" prefWidth="${screen.visualBounds.width}" layoutX="0" layoutY="0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" stylesheets="@../../css/shareStyles.css">
     <fx:define>
         <Screen fx:factory="getPrimary" fx:id="screen"/>
     </fx:define>
     <AnchorPane  layoutY="20.0" layoutX="30.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="${screen.visualBounds.height}" prefWidth="${screen.visualBounds.width}"  xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" >
         <children>
+
             <!--after clicking it will call a function createButtons and perform the action by passing the arrayList as argument in the getNumberOfGroups(arrayList obj) in ShareController.java-->
-            <GridPane id="share_GridPane" fx:id="Grid" layoutX="60" layoutY="130" prefHeight="400.0" prefWidth="700.0"/>
+            <GridPane id="share_GridPane" fx:id="Grid" layoutX="60" layoutY="80" prefHeight="600.0" prefWidth="700.0"/>
+
         </children>
     </AnchorPane>
 </StackPane>

@@ -144,6 +144,7 @@ public class Server implements ThreadNotifier,ServerConstants,FileWatcherCallbac
 		this.listOfFiles=(ArrayList<String>)allFiles[0];
 		Comms.setTreeString(allFiles[1].toString());
 		Comms.setFileListerList(this.listOfFiles);
+
 		System.out.println("Tree string is "+allFiles[1].toString() );
 
 		this.setFileWatchers();

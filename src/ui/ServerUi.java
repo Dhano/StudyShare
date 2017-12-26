@@ -17,6 +17,7 @@ public class ServerUi extends Application implements ScreenSize {
 
     public void start(Stage primaryStage){
         try{
+            DatabaseHelper.init(dbPath);
             Parent root;
             Scene scene;
             root = FXMLLoader.load(getClass().getResource("pages\\fxml\\pageKeeper.fxml"));
@@ -27,7 +28,7 @@ public class ServerUi extends Application implements ScreenSize {
             scene.getStylesheets().add(getClass().getResource("pages//css//applicationStyles.css").toExternalForm());
             primaryStage.setScene(scene);
             primaryStage.show();
-            DatabaseHelper.init(dbPath);
+
         }catch(Exception e){
             System.out.println("Oops Exception occured :"+e);
         }

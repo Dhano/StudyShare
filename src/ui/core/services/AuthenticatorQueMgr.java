@@ -13,5 +13,4 @@ import ui.core.services.microservices.Comms;
 public interface AuthenticatorQueMgr {
     public void addToAuthenticator(Comms comms, ClientsToBeServed clientToBeRemoved);
     public void removeFromAuthenticator(Comms client);
-
 }

@@ -77,7 +77,7 @@ public class FilesLister implements Runnable{
         try {
             if (root.exists()) {
                 if (root.isDirectory()) {
-                    sb.append(root.getCanonicalPath()+":{");
+                    sb.append(root.getCanonicalPath()+">{");
                     for (File f : root.listFiles()) {
                         makeFileTree(sb,f);
                     }

@@ -1,0 +1,6 @@
+1514022590350:	WTF	java.net.SocketException: Connection reset
+1514022618721:	WTF	java.net.SocketException: Connection reset
+1514022682456:	WTF	java.net.SocketException: Connection reset
+1514022755136:	WTF	java.net.SocketException: Connection reset
+1514023845152:	WTF	java.net.SocketException: Connection reset
+1514027167125:	WTF	java.net.SocketException: Software caused connection abort: recv failed

@@ -80,7 +80,7 @@ public class FileReaderRunnable implements Runnable,FileReaderRunnableConstants{
 	public void run(){
 
 		try{
-			if(this.filePath.contains(".DS"))
+			if(this.filePath.endsWith(".DS"))
 				return;
 			System.out.println("about to read "+this.filePath );
 					CustomFile customFile=new CustomFile(this.filePath, Housekeeper.getCompressedBytes(this.filePath));

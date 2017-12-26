@@ -1,32 +1,20 @@
-/*AnchorPane*/
-.root{
-    -fx-background-color:linear-gradient(#00bfff,#0080ff,#0000ff);
-
-}
-
-/*Button*/
-#btnRecent{
-    -fx-background-color: radial-gradient(radius 180%, #9e9999, #696767, #2f2f2f);
-}
-
-#btnClick:hover, #btnCl:hover{
-    -fx-cursor: HAND;
-}
-
 /*Layout Panes*/
 #sp, #fp{
-    -fx-background-color: #00bfff;
+    -fx-background-color: LightGray;
     -fx-text-fill: #000;
     -fx-font-family: "cursive";
     -fx-font-size: 18px;
     -fx-font-weight: bold;
 }
 
-#sp, #fp{
+#sp, #fp, #ap{
     -fx-border-styles: solid 2px #000;
+     -fx-background-color:rgba(0,0,0,0);
 }
 
-#ap{
-    -fx-background-color: #00bfff;
+#btnRecent:hover{
+   -jfx-button-type: RAISED;
+   -fx-border-radius: 50%;
+   -fx-font-size:25px;
+   -fx-cursor: HAND;
 }
-

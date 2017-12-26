@@ -154,7 +154,10 @@ public class Comms implements Runnable,ProgressBarUpdater,CommsConstants{
                         System.out.println(reqeustedFiles.toString());
 
                         //code to send files to users.
-                        this.iterateAndSendList(reqeustedFiles);
+                        if(reqeustedFiles.get(0).equals("0"))
+                            this.iterateAndSendList(Comms.fileListerList);
+                        else
+                            this.iterateAndSendList(reqeustedFiles);
                         this.userInfo.addToFilesUsed(reqeustedFiles);
 
                     } catch (ClassNotFoundException cfe) {
@@ -229,7 +232,7 @@ public class Comms implements Runnable,ProgressBarUpdater,CommsConstants{
             }
             else {
 
-                this.writeErrorToStream(fstr);
+                this.writeErrorToStream("couldnt find "+fstr +" in pool");
             }
         }
     }
@@ -263,4 +266,5 @@ interface CommsConstants{
     public static final String LIST_REQUEST="giveMeList";
     public static final String ABORT_MESSAGE=" \nABORTING SEND OPERATION COULDNT FIND CLASS";
     public static final String DC="disconnect";
+    public static final String ALL_FILES="0";
 }

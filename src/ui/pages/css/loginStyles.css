@@ -1,6 +1,7 @@
 #Pane
 {
-  -fx-background-image:url('../../resources/loginBackground.jpg');
+  //-fx-background-image:url('../../resources/loginBackground.jpg');
+  -fx-background-color:lightgray;
    -fx-font-family: sans-serif;
 }
 

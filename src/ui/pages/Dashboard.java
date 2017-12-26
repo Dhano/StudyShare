@@ -21,7 +21,6 @@ import javafx.scene.layout.*;
 import javafx.scene.text.Font;
 import javafx.util.Callback;
 import javafx.util.Duration;
-import jfxtras.scene.menu.CirclePopupMenu;
 import ui.pages.constants.BasicController;
 import ui.pages.constants.PageConstants;
 import ui.pages.constants.PageContantsForDashboard;
@@ -47,8 +46,6 @@ public class Dashboard implements PageConstants,BasicController{
         @FXML
         AnchorPane pageHolder;/*pane which containas Pagination*/
 
-            @FXML
-            Pagination pageManager;/*pagination object inisde pageHolder*/
 
 
     /*Required object of fxml controllers*/
@@ -67,9 +64,10 @@ public class Dashboard implements PageConstants,BasicController{
 
     /*Supporting Objects*/
     TranslateTransition translateTransitionForDashboard;
-    CirclePopupMenu circlePopupMenu;
+
     FXMLLoader manageUserLoader,manageGroupLoader,shareLoader,recentLoader,scrollableRecentLoader;
 
+    BasicController currentPage;
 
     /*this method will initialize other fxml files cotrollers and add them to pageManager*/
     @FXML protected void initialize() {
@@ -84,7 +82,7 @@ public class Dashboard implements PageConstants,BasicController{
             /*inint pages in pagination*/
             initPageHolder();
         }catch(Exception e){
-            System.out.println("Inside initiakize in pagekeeper"+e);
+            System.out.println("Inside initiakize in Dashboard"+e);
         }
         System.out.println("End of PageKeeper");
     }
@@ -206,7 +204,7 @@ public class Dashboard implements PageConstants,BasicController{
             public void handle(ActionEvent event) {
                 dashboardHolder.setVisible(false);
                 pageHolder.setVisible(true);
-                pageManager.setCurrentPageIndex(PageContantsForDashboard.GROUP_PAGE);
+                setCurrentPageIndex(PageContantsForDashboard.GROUP_PAGE);
             }
         });
         showManageUserPage.setOnAction(new EventHandler<ActionEvent>() {
@@ -214,7 +212,7 @@ public class Dashboard implements PageConstants,BasicController{
             public void handle(ActionEvent event) {
                 dashboardHolder.setVisible(false);
                 pageHolder.setVisible(true);
-                pageManager.setCurrentPageIndex(PageContantsForDashboard.USER_PAGE);
+                setCurrentPageIndex(PageContantsForDashboard.USER_PAGE);
             }
         });
         showSharePage.setOnAction(new EventHandler<ActionEvent>() {
@@ -222,7 +220,7 @@ public class Dashboard implements PageConstants,BasicController{
             public void handle(ActionEvent event) {
                 dashboardHolder.setVisible(false);
                 pageHolder.setVisible(true);
-                pageManager.setCurrentPageIndex(PageContantsForDashboard.SHARE_PAGE);
+                setCurrentPageIndex(PageContantsForDashboard.SHARE_PAGE);
             }
         });
         showRecentPage.setOnAction(new EventHandler<ActionEvent>() {
@@ -230,7 +228,7 @@ public class Dashboard implements PageConstants,BasicController{
             public void handle(ActionEvent event) {
                 dashboardHolder.setVisible(false);
                 pageHolder.setVisible(true);
-                pageManager.setCurrentPageIndex(PageContantsForDashboard.RECENT_PAGE);
+                setCurrentPageIndex(PageContantsForDashboard.RECENT_PAGE);
             }
         });
 
@@ -252,52 +250,75 @@ public class Dashboard implements PageConstants,BasicController{
 
     private void initPageHolder(){
          /*Calls and sets the reuired page to be shown*/
-         Button hideCurrentPage;
+        JFXButton hideCurrentPage;
+        hideCurrentPage=new JFXButton();
 
-         hideCurrentPage=new Button();
-         hideCurrentPage.setGraphic(new FontAwesomeIconView(FontAwesomeIcon.CLOSE));
-
+        FontAwesomeIconView hide_dashboard_icon = new FontAwesomeIconView(FontAwesomeIcon.REMOVE);
+        hide_dashboard_icon.getStyleClass().add("hide_icon");
+        hideCurrentPage.getStyleClass().add("btn-raised");
+        hideCurrentPage.setGraphic(hide_dashboard_icon);
         hideCurrentPage.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
                 pageHolder.setVisible(false);
             }
         });
-        pageManager.setPageFactory(new Callback<Integer, Node>() {
-            @Override
-            public Node call(Integer pageIndex) {
-                try{
-                    System.out.println("Showing page at index 0");
-                    return pageSelector(pageIndex);}
-                catch (Exception e){
-                }
-                return null;
-            }
-        });
-        AnchorPane.setLeftAnchor(hideCurrentPage,new Double("730"));
-        AnchorPane.setTopAnchor(hideCurrentPage,new Double("50"));
+        AnchorPane.setLeftAnchor(hideCurrentPage,new Double("770"));
+        AnchorPane.setTopAnchor(hideCurrentPage,new Double("40"));
 
-        pageHolder.getChildren().add(hideCurrentPage);
+
         pageHolder.setVisible(false);
+
+        /*Modified by dhs*/
+        AnchorPane.setLeftAnchor(manageUser.getRoot(),new Double(0));
+        AnchorPane.setTopAnchor(manageUser.getRoot(),new Double(0));
+        AnchorPane.setLeftAnchor(manageGroup.getRoot(),new Double(0));
+        AnchorPane.setTopAnchor(manageGroup.getRoot(),new Double(0));
+        AnchorPane.setLeftAnchor(share.getRoot(),new Double(0));
+        AnchorPane.setTopAnchor(share.getRoot(),new Double(0));
+        AnchorPane.setLeftAnchor(recent.getRoot(),new Double(0));
+        AnchorPane.setTopAnchor(recent.getRoot(),new Double(0));
+        pageHolder.getChildren().addAll(manageGroup.getRoot(),manageUser.getRoot(),share.getRoot(),recent.getRoot());
+        //pageHolder.getChildren().add(hideCurrentPage);
+        /*Initial state of all the pages*/
+        manageGroup.getRoot().setVisible(false);
+        manageUser.getRoot().setVisible(false);
+        share.getRoot().setVisible(false);
+        recent.getRoot().setVisible(false);
+        pageHolder.getChildren().add(hideCurrentPage);
+      //  manageUser.getRoot().setVisible(true);
+
     }
 
-    private Node pageSelector(int pageIndex) {
+    public void setCurrentPageIndex(Integer pageIndex) {
+        try{
+            System.out.println("Showing page at index 0");
+            if(currentPage!=null)
+                currentPage.getRoot().setVisible(false);
+            currentPage=pageSelector(pageIndex);
+            currentPage.getRoot().setVisible(true);
+        }
+        catch (Exception e){
+        }
+    }
+
+    private BasicController pageSelector(int pageIndex) {
 
         if (pageIndex==PageContantsForDashboard.GROUP_PAGE){
             System.out.println(manageGroup);
-            return manageGroup.getRoot();
+            return manageGroup;
         }
         else if(pageIndex==PageContantsForDashboard.USER_PAGE){
-           return manageUser.getRoot();
+           return manageUser;
         }
         else if(pageIndex==PageContantsForDashboard.SHARE_PAGE){
-            return share.getRoot();
+            return share;
         }
         else if(pageIndex==PageContantsForDashboard.RECENT_PAGE){
-            return recent.getRoot();
+            return recent;
         }
 
-        return new Button("Dhananjay");
+        return null;
     }
 
 
